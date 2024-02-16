@@ -1,0 +1,13 @@
+#login-form-container {
+    margin-top: 150px;
+    width: 25%;
+    padding-top: 50px;
+    padding-bottom: 60px;
+    padding-right: 20px;
+}
+
+@media (max-width: 768px) {
+    #login-form-container {
+        width: 90%;
+    }
+}

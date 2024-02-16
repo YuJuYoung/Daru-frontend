@@ -1,0 +1,9 @@
+#navbar-conatiner {
+    width: 60%;
+}
+
+@media (max-width: 768px) {
+    #navbar-conatiner {
+        width: 95%;
+    }
+}

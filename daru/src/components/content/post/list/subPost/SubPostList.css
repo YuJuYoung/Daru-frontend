@@ -1,0 +1,19 @@
+#sub-post-list-container {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    width: 45%;
+    padding-top: 40px;
+    padding-bottom: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#sub-post-list-content {
+    height: 430px;
+}
+
+@media (max-width: 768px) {
+    #sub-post-list-container {
+        width: 90%;
+    }
+}

@@ -1,0 +1,19 @@
+#description {
+    resize: none
+}
+
+#post-create-form-container {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    width: 50%;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+@media (max-width: 768px) {
+    #post-create-form-container {
+        width: 90%;
+    }
+}
