@@ -1,10 +1,10 @@
 import PostList from "./list/PostList";
 import PostCreateContainer from "../../../containers/content/post/create/PostCreateContainer";
 import PostDetailContainer from "../../../containers/content/post/detail/PostDetailContainer";
-import ReqDocSubmitContainer from "../../../containers/content/post/reqDoc/submit/ReqDocSubmitContainer";
+import SubDocCreateContainer from "../../../containers/content/subDoc/create/SubDocCreateContainer";
 import MyPostListContainer from "../../../containers/content/post/list/myPost/MyPostListContainer";
 import SubPostListContainer from "../../../containers/content/post/list/subPost/SubPostListContainer";
-import SubDocListContainer from "../../../containers/content/post/subDoc/list/SubDocListContainer";
+import SubDocListContainer from "../../../containers/content/subDoc/list/SubDocListContainer";
 import { Routes, Route } from 'react-router-dom';
 
 function Post() {
@@ -13,7 +13,7 @@ function Post() {
       <Routes>
         <Route exact path="/post/create" element={<PostCreateContainer />} />
         <Route exact path="/post/:postId/detail" element={<PostDetailContainer />} />
-        <Route exact path="/post/:postId/req-doc/submit" element={<ReqDocSubmitContainer />} />
+        <Route exact path="/post/:postId/sub-doc/create" element={<SubDocCreateContainer />} />
         <Route exact path="/post/my-list" element={<MyPostListContainer />} />
         <Route exact path="/post/sub/list" element={<SubPostListContainer />} />
         <Route exact path="/post/:postId/sub-doc/list" element={<SubDocListContainer />} />

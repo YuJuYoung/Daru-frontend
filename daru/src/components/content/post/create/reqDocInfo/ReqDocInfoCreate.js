@@ -45,10 +45,10 @@ function RequestedInfo({ reqDocInfoList, setReqDocInfoList }) {
         </div>
         <div className="requested-info-list">
           <div className="mb-4">
-            <ul class="list-group">
+            <ul className="list-group">
               {
                 localReqDocInfoList.map((reqDocInfo, index) => (
-                  <li class="list-group-item" key={index}>
+                  <li className="list-group-item" key={index}>
                     <div className="row">
                       <div className="col-sm-8">
                         <span>{reqDocInfo.explainTxt}</span>
@@ -57,7 +57,7 @@ function RequestedInfo({ reqDocInfoList, setReqDocInfoList }) {
                         <span>{reqDocInfo.minLen}자 이상, {reqDocInfo.maxLen}자 이하</span>
                       </div>
                       <div className="col-sm-1">
-                        <button type="button" class="btn-close" aria-label="Close"></button>
+                        <button type="button" className="btn-close" aria-label="Close"></button>
                       </div>
                     </div>
                   </li>

@@ -1,9 +1,9 @@
-import './ReqDocSubmit.css';
+import './SubDocCreate.css';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-function ReqDocSubmit(props) {
+function SubDocCreate(props) {
   const { postId } = useParams();
   const [reqDocInfoList, setReqDocInfoList] = useState([]);
   const navigate = useNavigate();
@@ -38,21 +38,21 @@ function ReqDocSubmit(props) {
   }, []);
 
   async function submit(data) {
-    const currentDate = new Date();
-
-    const response = await axios.post('/api/sub-doc/create', {
-      postId: postId,
-      userId: props.loginedId,
-      createdAt: currentDate,
-      updatedAt: currentDate,
-      subDocInfoList: data.subDocInfoList
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-
-    return response.data;
+    try {
+      const response = await axios.post('/api/sub-doc/create', {
+        postId: postId,
+        userId: props.loginedId,
+        subDocInfoList: data.subDocInfoList
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      return response.data;
+    } catch (error) {
+      return error.response.data;
+    }
   }
 
   function getIdByReqDocInfo(reqDocInfo) {
@@ -91,7 +91,7 @@ function ReqDocSubmit(props) {
 
   return (
     <div className="ReqDocSubmit">
-      <div className="container border rounded shadow" id="req-doc-submit-container">
+      <div className="container border rounded shadow" id="sub-doc-create-container">
         <span className="fw-bold fs-3">서류 정보</span>
         <div className="mt-4">
           <form onSubmit={handleFormSubmit}>
@@ -120,4 +120,4 @@ function ReqDocSubmit(props) {
   )
 }
 
-export default ReqDocSubmit;
+export default SubDocCreate;

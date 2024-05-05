@@ -17,16 +17,20 @@ function MyPostList(props) {
   });
 
   async function getPostList(data) {
-    const response = await axios.post('/api/post/my-list', {
-      userId: props.loginedId,
-      criteria: data
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-
-    return response.data;
+    try {
+      const response = await axios.post('/api/post/my-list', {
+        userId: props.loginedId,
+        criteria: data
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      return response.data;
+    } catch (error) {
+      return error.response.data;
+    }
   }
 
   async function setPageData(pageData) {
@@ -51,18 +55,11 @@ function MyPostList(props) {
     function setData() {
       setPageData({ pageNum: 1 });
     }
-
     setData();
   }, []);
 
   function handlePaginationClick(clickedPage) {
-    if (clickedPage < 1) {
-      alert("이전 페이지가 없습니다.");
-    } else if (clickedPage > pagination.totalPage) {
-      alert("다음 페이지가 없습니다.")
-    } else {
-      setPageData({ pageNum: clickedPage });
-    }
+    setPageData({ pageNum: clickedPage });
   }
 
   function handleListItemClick(postId) {

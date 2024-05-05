@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import Pagination from '../../../../pagination/Pagination';
+import Pagination from '../../../pagination/Pagination';
 
 function SubDocList(props) {
   const navigate = useNavigate();
@@ -19,19 +19,21 @@ function SubDocList(props) {
   });
 
   async function getSubDocList(pageData) {
-    const response = await axios.post('/api/sub-doc/list', {
-      postWriterId: props.loginedId,
-      subDocCriteria: {
+    try {
+      const response = await axios.post('/api/sub-doc/list', {
+        postWriterId: props.loginedId,
         postId: postId,
         criteria: pageData
-      }
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-
-    return response.data;
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      return response.data;
+    } catch (error) {
+      return error.response.data;
+    }
   }
 
   async function setPageData(pageData) {
@@ -56,18 +58,11 @@ function SubDocList(props) {
     function setData() {
       setPageData({ pageNum: 1 });
     }
-
     setData();
   }, []);
 
   function handlePaginationClick(clickedPage) {
-    if (clickedPage < 1) {
-      alert("이전 페이지가 없습니다.");
-    } else if (clickedPage > pagination.totalPage) {
-      alert("다음 페이지가 없습니다.")
-    } else {
-      setPageData({ pageNum: clickedPage });
-    }
+    setPageData({ pageNum: clickedPage });
   }
 
   function handleListItemClick(subDocId) {
@@ -77,7 +72,7 @@ function SubDocList(props) {
   return (
     <div className="SubDocList">
       <div className="container border rounded shadow" id="sub-doc-list-container">
-        <span className="fw-bold fs-3">글 목록</span>
+        <span className="fw-bold fs-3">제출된 서류 목록</span>
         <div id="sub-doc-list-content">
           <div className="mb-4 mt-5 container-fluid">
             <ul className="list-group">

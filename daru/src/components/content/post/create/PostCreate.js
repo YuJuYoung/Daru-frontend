@@ -23,22 +23,22 @@ function PostCreate(props) {
   }
 
   async function create(data) {
-    const currentDate = new Date();
-
-    const response = await axios.post('/api/post/create', {
-      title: data.title,
-      description: data.description,
-      createdAt: currentDate,
-      updatedAt: currentDate,
-      writerId: props.loginedId,
-      reqDocInfoList: data.reqDocInfoList
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-
-    return response.data;
+    try {
+      const response = await axios.post('/api/post/create', {
+        title: data.title,
+        description: data.description,
+        writerId: props.loginedId,
+        reqDocInfoList: data.reqDocInfoList
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      return response.data;
+    } catch (error) {
+      return error.response.data;
+    }
   }
 
   async function handleFormSubmit(e) {

@@ -10,16 +10,20 @@ function SubDocDetail(props) {
   const [subDocInfoList, setSubDocInfoList] = useState([]);
 
   async function getSubDocInfoList() {
-    const response = await axios.post(`/api/sub-doc/info/list`, {
+    try {
+      const response = await axios.post(`/api/sub-doc/info/list`, {
         loginedId: props.loginedId,
         subDocId: subDocId
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
 
-    return response.data;
+      return response.data;
+    } catch (error) {
+      return error.response.data;
+    }
   }
 
   useEffect(() => {
@@ -44,7 +48,7 @@ function SubDocDetail(props) {
   return (
     <div className="SubDocDetail">
       <div className="container border rounded shadow" id="sub-doc-detail-container">
-        <span className="fw-bold fs-3">서류 정보</span>
+        <span className="fw-bold fs-3">제출된 서류 정보</span>
         <div className="mt-4">
           {
             subDocInfoList.map((subDocInfo, index) => (

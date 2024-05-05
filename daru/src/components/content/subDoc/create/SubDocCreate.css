@@ -2,7 +2,7 @@
     resize: none;
 }
 
-#req-doc-submit-container {
+#sub-doc-create-container {
     margin-top: 80px;
     margin-bottom: 80px;
     width: 50%;
@@ -13,7 +13,7 @@
 }
 
 @media (max-width: 768px) {
-    #req-doc-submit-container {
+    #sub-doc-create-container {
         width: 90%;
     }
 }

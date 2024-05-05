@@ -24,13 +24,17 @@ function LoginForm(props) {
   }
   
   async function login(data) {
-    const response = await axios.post('/api/login', data, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-  
-    return response.data;
+    try {
+      const response = await axios.post('/api/login', data, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    
+      return response.data;
+    } catch (error) {
+      return error.response.data;
+    }
   }
   
   async function handleFormSubmit(e) {

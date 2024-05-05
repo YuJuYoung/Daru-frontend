@@ -42,13 +42,17 @@ function CreateForm() {
   }
   
   async function createUser(data) {
-    const response = await axios.post('/api/user/create', data, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-  
-    return response.data;
+    try {
+      const response = await axios.post('/api/user/create', data, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    
+      return response.data;
+    } catch (error) {
+      return error.response.data;
+    }
   }
   
   async function handleFormSubmit(e) {

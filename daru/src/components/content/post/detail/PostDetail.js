@@ -24,13 +24,17 @@ function PostDetail(props) {
   }, [navigate, postId]);
 
   async function getPost(postId) {
-    const response = await axios.get(`/api/post/${postId}/detail`, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-
-    return response.data;
+    try {
+      const response = await axios.get(`/api/post/${postId}/detail`, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      return response.data;
+    } catch (error) {
+      return error.response.data;
+    }
   }
 
   return (
@@ -59,7 +63,7 @@ function PostDetail(props) {
                       <Link role="button" className="btn btn-primary" to={`/post/${postId}/sub-doc/list`}>제출된 서류 확인</Link>
                     </div>
                   : <div className="mb-4">
-                      <Link role="button" className="btn btn-primary" to={`/post/${postId}/req-doc/submit`}>서류 제출</Link>
+                      <Link role="button" className="btn btn-primary" to={`/post/${postId}/sub-doc/create`}>서류 제출</Link>
                     </div>
               }
             </div>
